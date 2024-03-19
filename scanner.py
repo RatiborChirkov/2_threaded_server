@@ -1,11 +1,9 @@
 import socket
-from concurrent.futures import ThreadPoolExecutor
-import threading
 
 def scan_port(host, port):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(1)  # Установка тайм-аута для подключения
+        sock.settimeout(1)
         result = sock.connect_ex((host, port))
         if result == 0:
             return port
@@ -20,7 +18,7 @@ def progress_bar(total, scanned):
 def main():
     host = input("Введите имя хоста/IP-адрес: ")
     open_ports = []
-    total_ports = 65535  # Всего портов для сканирования
+    total_ports = 65535
 
     scanned_ports = 0
     for port in range(1, total_ports + 1):
